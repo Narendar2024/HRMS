@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-right: 50px;
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-links a:hover {
+            color: orange;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .actions a {
+            text-decoration: none;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            transition: background-color, 0.3s;
+        }
+
+        .actions a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Logo</div>
+
+        <ul class="nav-links">
+            <li><a href="/signup">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <form action="/logout" method="post">
+                <button type="submit">Log Out</button>
+            </form>
+
+        </ul>
+
+    </nav>
+
+    <div class="container">
+        <h2>Employee Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Role</th>
+                    <th>Salary</th>
+                    <th>Department</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(employee=> { %>
+                    <tr>
+                        <td>
+                            <%= employee.name %>
+                        </td>
+                        <td>
+                            <%= employee.email %>
+                        </td>
+                        <td>
+                            <%= employee.mobile %>
+                        </td>
+                        <td>
+                            <%= employee.role %>
+                        </td>
+                        <td>
+                            <%= employee.salary %>
+                        </td>
+                        <td>
+                            <%= employee.dept %>
+                        </td>
+                        <td>
+                            <%= employee.location %>
+                        </td>
+                        <td class="actions">
+                            <a href="/update/<%= employee._id %>">Update</a>
+                            <a href="/reports/<%= employee._id %>">Reports</a>
+                            <a href="/delete/<%= employee._id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./scripts.js"></script>
+</body>
+
+</html>
